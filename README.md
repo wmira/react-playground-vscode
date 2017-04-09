@@ -23,7 +23,7 @@ This plugin helps in automatically providing a webview playground of your React 
 ## Release Notes
 
 
-### 0.0.1
+### 0.0.2
 
 Initial Preview Release. Not meant for serious usage. Feedbacks are welcome.
 
