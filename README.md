@@ -6,6 +6,10 @@ This plugin helps in automatically providing a webview playground of your React 
 
 ![Preview](preview.gif)
 
+## Usage
+
+Enter ctrl+shift+p and then type React Playground
+
 ## Features
 
 * Live Edit a component
