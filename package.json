@@ -2,11 +2,14 @@
   "name": "react-playground-vscode",
   "displayName": "React Playground",
   "description": "React Components Playground and Live Preview",
-  "version": "0.0.1",  
+  "version": "0.0.2",  
   "publisher": "wmira",
   "engines": {
     "vscode": "^1.10.0"
   },
+  "license": "MIT",
+  "repository": "https://github.com/wmira/react-playground-vscode",
+  "author": "Warren Mira",
   "categories": [
     "Other"
   ],
