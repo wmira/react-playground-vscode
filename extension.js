@@ -14,11 +14,11 @@ const {
 } = require('./utils');
 
 function activate(context) {
-    let isActivated = false;
+    
     const { extensionPath } = context; //context.storagePath    
     const { rootPath: workspacePath } = vscode.workspace;  //users work dir    
     const contentBase = path.join(workspacePath, '.react-playground');
-    
+    console.log(vscode.workspace, context);
     const playgroundUri = vscode.Uri.parse(`file://${contentBase}/playground.html`);
     const webpackConfig = createWebpackConfig({ contentBase, extensionPath, workspacePath});
 

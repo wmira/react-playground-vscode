@@ -45,7 +45,7 @@ const createWebpackConfig = ({ devServerPort = 9123, contentBase, extensionPath,
             path: contentBase            
         },
         resolve: {
-            modules: [path.join(extensionPath, 'node_modules'), path.join(workspacePath, 'node_modules'), 'node_modules' ],            
+            modules: [path.join(extensionPath, 'node_modules'), path.join(workspacePath, 'node_modules'), 'node_modules' ]            
         },
         context: extensionPath,        
         module: {
@@ -55,7 +55,7 @@ const createWebpackConfig = ({ devServerPort = 9123, contentBase, extensionPath,
                   use: { 
                     loader: 'babel-loader', 
                     options: { 
-                        presets: ['env', 'react', 'stage-2' ] 
+                        presets: ['babel-preset-env', 'babel-preset-react', 'babel-preset-stage-2' ].map(require.resolve) 
                     } 
                   } 
                 }
