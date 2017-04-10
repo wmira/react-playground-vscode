@@ -1,6 +1,18 @@
-# react-playground-vscode README
+# react-playground-vscode
 
 This plugin helps in automatically providing a webview playground of your React Component.
+
+
+## Release Notes
+
+### 0.0.6
+
+* Upgraded to react-playground-kit 15.0.1
+* Compile error now is displyed on React Playground window
+
+### 0.0.4
+
+Initial Preview Release. Not meant for serious usage. Feedbacks welcome.
 
 ## Preview
 
@@ -24,12 +36,6 @@ Enter ctrl+shift+p and then type React Playground
 
 * Closing the Playground windowd does not seem to reopen it again.
 
-## Release Notes
-
-
-### 0.0.4
-
-Initial Preview Release. Not meant for serious usage. Feedbacks welcome.
 
 ## FAQ
 

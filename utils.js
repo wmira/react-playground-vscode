@@ -5,7 +5,18 @@ const createEntryHtml = () => {
     return `<!DOCTYPE html>
     <html>
         <head>
-            
+            <style>
+                * {
+                    border-sizing: border-box;
+                }
+                html, body {
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    height: 100%;
+
+                }
+            </style>
         </head>
         <body>            
             <div id='app'></div>
@@ -67,7 +78,8 @@ const createWebpackConfig = ({ devServerPort = 9123, contentBase, extensionPath,
             inline: true,
             watchContentBase: true,
             clientLogLevel: 'info',
-            host: 'localhost'
+            host: 'localhost',
+            overlay: true
         }
     }
 }

@@ -2,7 +2,7 @@
   "name": "react-playground-vscode",
   "displayName": "React Playground",
   "description": "React Components Playground and Live Preview",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "wmira",
   "engines": {
     "vscode": "^1.10.0"
@@ -48,7 +48,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
-    "react-playground-kit": "^15.0.0",
+    "react-playground-kit": "^15.0.1",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   },
