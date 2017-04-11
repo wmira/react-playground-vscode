@@ -5,6 +5,10 @@ This plugin helps in automatically providing a webview playground of your React 
 
 ## Release Notes
 
+### 0.0.7
+
+* Fixes loading issue with WINDOWS. Thanks to @joriguzman for the bug report
+
 ### 0.0.6
 
 * Upgraded to react-playground-kit 15.0.1
