@@ -13,15 +13,19 @@ const {
     createWebpackConfig 
 } = require('./utils');
 
+const upperCaseDriveLetter = (path) => {
+
+}
+
 function activate(context) {
     
     const { extensionPath } = context; //context.storagePath    
     const { rootPath: workspacePath } = vscode.workspace;  //users work dir    
-    const contentBase = path.join(workspacePath, '.react-playground');
-    console.log(vscode.workspace, context);
-    const playgroundUri = vscode.Uri.parse(`file://${contentBase}/playground.html`);
-    const webpackConfig = createWebpackConfig({ contentBase, extensionPath, workspacePath});
-
+    const contentBase = path.join(path.normalize(workspacePath), '.react-playground');
+    
+    const playgroundUri = vscode.Uri.file(`${contentBase}/playground.html`);
+    const webpackConfig = createWebpackConfig({ contentBase, extensionPath: path.resolve(extensionPath), workspacePath: path.resolve(workspacePath)});
+    
     //create folder
     if (!fs.existsSync(contentBase)){
         fs.mkdirSync(contentBase);
@@ -30,14 +34,18 @@ function activate(context) {
     
 
     const disposable = vscode.commands.registerCommand('extension.openPlayground', function () {
-        console.log('command');
+        
         try {
             const editor = vscode.window.activeTextEditor;
-            
-            console.info('Active Editor: ', editor.document); // editor.document.uri.path);
+            let filePath = editor.document.uri.path;
+            const isWin = /^win/.test(process.platform);
+
+            if ( isWin ) {
+                filePath = filePath.substr(1);
+            }
             
             fs.writeFileSync(path.join(contentBase, 'playground.html'), createContentEntry());
-            fs.writeFileSync(path.join(contentBase, 'index.js'), createEntry(editor.document.uri.path));
+            fs.writeFileSync(path.join(contentBase, 'index.js'), createEntry(filePath));
             fs.writeFileSync(path.join(contentBase, 'index.html'), createEntryHtml());
 
             addDevServerEntrypoints(webpackConfig, webpackConfig.devServer);

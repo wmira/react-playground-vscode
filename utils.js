@@ -50,7 +50,7 @@ const createContentEntry = (port = 9123) => {
 const createWebpackConfig = ({ devServerPort = 9123, contentBase, extensionPath, workspacePath }) => {
     //contentBase is where webpack dev server will serve our updated content
     
-    return {
+    const config = {
         entry: path.join(contentBase, 'index.js'),
         output: {
             path: contentBase            
@@ -81,7 +81,8 @@ const createWebpackConfig = ({ devServerPort = 9123, contentBase, extensionPath,
             host: 'localhost',
             overlay: true
         }
-    }
+    }    
+    return config;
 }
 
 module.exports = { createContentEntry, createEntryHtml, createWebpackConfig };
