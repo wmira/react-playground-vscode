@@ -8,7 +8,7 @@ Appreciate any bug/feture reports via [Github](https://github.com/wmira/react-pl
 
 ## Release Notes
 
-### 0.0.7
+### 0.0.8
 
 * Fixes loading issue with WINDOWS. Thanks to @joriguzman for the bug report
 
