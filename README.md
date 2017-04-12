@@ -2,6 +2,9 @@
 
 This plugin helps in automatically providing a webview playground of your React Component.
 
+## Bug/Feature Reports
+
+Appreciate any bug/feture reports via [Github](https://github.com/wmira/react-playground-vscode/issues)
 
 ## Release Notes
 
