@@ -13,9 +13,10 @@ const {
     createWebpackConfig 
 } = require('./utils');
 
-const upperCaseDriveLetter = (path) => {
 
-}
+    
+let compiler;
+let devServer;
 
 function activate(context) {
     
@@ -24,17 +25,16 @@ function activate(context) {
     const contentBase = path.join(path.normalize(workspacePath), '.react-playground');
     
     const playgroundUri = vscode.Uri.file(`${contentBase}/playground.html`);
-    const webpackConfig = createWebpackConfig({ contentBase, extensionPath: path.resolve(extensionPath), workspacePath: path.resolve(workspacePath)});
-    
+      
     //create folder
     if (!fs.existsSync(contentBase)){
         fs.mkdirSync(contentBase);
     }
 
-    
+
 
     const disposable = vscode.commands.registerCommand('extension.openPlayground', function () {
-        
+       
         try {
             const editor = vscode.window.activeTextEditor;
             let filePath = editor.document.uri.path;
@@ -43,22 +43,26 @@ function activate(context) {
             if ( isWin ) {
                 filePath = filePath.substr(1);
             }
-            
-            fs.writeFileSync(path.join(contentBase, 'playground.html'), createContentEntry());
-            fs.writeFileSync(path.join(contentBase, 'index.js'), createEntry(filePath));
-            fs.writeFileSync(path.join(contentBase, 'index.html'), createEntryHtml());
+            if ( !devServer ) {
+                const webpackConfig = createWebpackConfig({ contentBase, extensionPath: path.resolve(extensionPath), workspacePath: path.resolve(workspacePath)});
+                fs.writeFileSync(path.join(contentBase, 'playground.html'), createContentEntry());
+                fs.writeFileSync(path.join(contentBase, 'index.js'), createEntry(filePath));
+                fs.writeFileSync(path.join(contentBase, 'index.html'), createEntryHtml());
 
-            addDevServerEntrypoints(webpackConfig, webpackConfig.devServer);
-            const compiler = webpack(webpackConfig);
-            const devServer = new WebpackDevServer(compiler, webpackConfig.devServer);
-            
-            
-            devServer.listen(webpackConfig.devServer.port, 'localhost', function(err) {
-                if(err) throw err;
-                isActivated = true;
+                addDevServerEntrypoints(webpackConfig, webpackConfig.devServer);
+                console.log('WEBPACK CONFIG >> ', webpackConfig);
+                compiler = webpack(webpackConfig);
+                devServer = new WebpackDevServer(compiler, webpackConfig.devServer);
+                
+                
+                devServer.listen(webpackConfig.devServer.port, 'localhost', function(err) {
+                    if(err) throw err;
+                    isActivated = true;                    
+                    vscode.commands.executeCommand('vscode.previewHtml', playgroundUri, vscode.ViewColumn.Two, 'React Playground');
+                });
+            } else {
                 vscode.commands.executeCommand('vscode.previewHtml', playgroundUri, vscode.ViewColumn.Two, 'React Playground');
-            });
-
+            }
             
         } catch ( e ) {
             console.error(e);
@@ -72,6 +76,15 @@ function activate(context) {
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
-function deactivate() {
+function deactivate() {    
+    if ( devServer ) {
+        devServer.close();
+        devServer = null;
+    }
+    if ( compiler ) {
+        compiler.close();
+        compiler = null;
+    }
+    
 }
 exports.deactivate = deactivate;

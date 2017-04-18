@@ -2,11 +2,23 @@
 
 This plugin helps in automatically providing a webview playground of your React Component.
 
+## Usage
+
+
+Enter ctrl+shift+p and then type React Playground
+
+
 ## Bug/Feature Reports
 
 Appreciate any bug/feture reports via [Github](https://github.com/wmira/react-playground-vscode/issues)
 
 ## Release Notes
+
+
+### 0.0.9
+
+* Closing and re-opening the extension should now work
+
 
 ### 0.0.8
 
@@ -25,10 +37,6 @@ Initial Preview Release. Not meant for serious usage. Feedbacks welcome.
 
 ![Preview](preview.gif)
 
-## Usage
-
-
-Enter ctrl+shift+p and then type React Playground
 
 ## Features
 

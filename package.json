@@ -2,7 +2,7 @@
   "name": "react-playground-vscode",
   "displayName": "React Playground",
   "description": "React Components Playground and Live Preview",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "publisher": "wmira",
   "engines": {
     "vscode": "^1.10.0"
