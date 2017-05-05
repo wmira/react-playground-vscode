@@ -69,6 +69,9 @@ const createWebpackConfig = ({ devServerPort = 9123, contentBase, extensionPath,
                         presets: ['babel-preset-env', 'babel-preset-react', 'babel-preset-stage-2' ].map(require.resolve) 
                     } 
                   } 
+                },
+                {
+                    test: /\.css$/, use: [ 'style-loader', 'css-loader' ]
                 }
             ]
         },
