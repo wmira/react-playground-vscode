@@ -56,12 +56,14 @@ const createWebpackConfig = ({ devServerPort = 9123, contentBase, extensionPath,
             path: contentBase            
         },
         resolve: {
-            modules: [path.join(extensionPath, 'node_modules'), path.join(workspacePath, 'node_modules'), 'node_modules' ]            
+            modules: [path.join(extensionPath, 'node_modules'), path.join(workspacePath, 'node_modules'), 'node_modules' ],
+            extensions: ['.js', '.json', '.jsx' ],
         },
         context: extensionPath,        
         module: {
             rules: [
-                { test: /\.js$/, 
+                { 
+                  test: /\.(js|jsx)$/,                
                   exclude: /node_modules/, 
                   use: { 
                     loader: 'babel-loader', 

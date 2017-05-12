@@ -32,7 +32,7 @@ function activate(context) {
     }
 
 
-
+    
     const disposable = vscode.commands.registerCommand('extension.openPlayground', function () {
        
         try {
@@ -49,15 +49,13 @@ function activate(context) {
                 fs.writeFileSync(path.join(contentBase, 'index.js'), createEntry(filePath));
                 fs.writeFileSync(path.join(contentBase, 'index.html'), createEntryHtml());
 
-                addDevServerEntrypoints(webpackConfig, webpackConfig.devServer);
-                console.log('WEBPACK CONFIG >> ', webpackConfig);
+                addDevServerEntrypoints(webpackConfig, webpackConfig.devServer);                
                 compiler = webpack(webpackConfig);
                 devServer = new WebpackDevServer(compiler, webpackConfig.devServer);
                 
                 
                 devServer.listen(webpackConfig.devServer.port, 'localhost', function(err) {
-                    if(err) throw err;
-                    isActivated = true;                    
+                    if(err) throw err;                                     
                     vscode.commands.executeCommand('vscode.previewHtml', playgroundUri, vscode.ViewColumn.Two, 'React Playground');
                 });
             } else {

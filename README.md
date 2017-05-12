@@ -14,6 +14,10 @@ Appreciate any bug/feture reports via [Github](https://github.com/wmira/react-pl
 
 ## Release Notes
 
+### 0.0.11
+
+* Support loading of jsx extension
+
 ### 0.0.10
 
 * Enabling css loader to fix css loading issues
@@ -21,10 +25,6 @@ Appreciate any bug/feture reports via [Github](https://github.com/wmira/react-pl
 ### 0.0.9
 
 * Closing and re-opening the extension should now work
-
-### 0.0.8
-
-* Fixes loading issue with WINDOWS. Thanks to @joriguzman for the bug report
 
 
 ## Preview
