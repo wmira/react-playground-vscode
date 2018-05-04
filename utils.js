@@ -57,7 +57,7 @@ const createWebpackConfig = ({ devServerPort = 9123, contentBase, extensionPath,
         },
         resolve: {
             modules: [path.join(extensionPath, 'node_modules'), path.join(workspacePath, 'node_modules'), 'node_modules' ],
-            extensions: ['.js', '.json', '.jsx' ],
+            extensions: ['.js', '.json', '.jsx', '.ts', '.tsx' ],
         },
         context: extensionPath,        
         module: {
@@ -67,6 +67,16 @@ const createWebpackConfig = ({ devServerPort = 9123, contentBase, extensionPath,
                   exclude: /node_modules/, 
                   use: { 
                     loader: 'babel-loader', 
+                    options: { 
+                        presets: ['babel-preset-env', 'babel-preset-react', 'babel-preset-stage-2' ].map(require.resolve) 
+                    } 
+                  } 
+                },
+                { 
+                  test: /\.(ts|tsx)$/,                
+                  exclude: /node_modules/, 
+                  use: { 
+                    loader: 'babel-loader!ts-loader', 
                     options: { 
                         presets: ['babel-preset-env', 'babel-preset-react', 'babel-preset-stage-2' ].map(require.resolve) 
                     } 
